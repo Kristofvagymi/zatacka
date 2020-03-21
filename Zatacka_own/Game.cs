@@ -5,7 +5,7 @@ namespace Zatacka_own
 {
     public partial class Game : Form
     {
-        Player p1;
+        private Player p1;
 
         public Game()
         {
@@ -16,16 +16,23 @@ namespace Zatacka_own
 
         private void paint(object sender, PaintEventArgs e)
         {
-
-            p1.paint(100, 100, e);
-
+            p1.paint(10, 10, e);
         }
+
+        int ad = 0;
 
         private void timer_tick(object sender, EventArgs e)
         {
-            p1.tick();
+            //p1.tick();
+            ad++;
+            p1.PosX++;
+            Console.WriteLine(ad);
             Console.WriteLine(p1.PosX);
-            Console.WriteLine(p1.PosY);
+            Application.DoEvents();
+            /*p1.PosX += 1;
+            p1.PosY += 1;
+            Console.WriteLine(p1.PosX);
+            Console.WriteLine(p1.PosY);*/
             Invalidate();
         }
     }

@@ -10,40 +10,38 @@ namespace Zatacka_own
 {
     class Player
     {
-        private int posX = 100;
-        private int posY = 100;
 
-        private int direction = 0;
+        public int PosX{set; get; }
+        public int PosY {set; get; }
+        public int Speed { set; get; } = 1;
 
-        public int PosX{ set; get; }
-        public int PosY{ set; get; }
         public int Direction
         {
             set
             {
                 if (value > 360)
-                    direction = 360;
+                    Direction = 360;
                 else if (value < 0)
-                    direction = 0;
-                else direction = value;
+                    Direction = 0;
+                else Direction = value;
             }
-            get { return direction; }
+            get { return Direction; }
         }
 
-        internal void paint(int x, int y, PaintEventArgs e)
+        public void paint(int x, int y, PaintEventArgs e)
         {
-            posX = x;
-            posY = y;
+            PosX = x;
+            PosY = y;
 
             Graphics g = e.Graphics;
             Pen pen = new Pen(Color.Red, 4);
-            g.DrawEllipse(pen, posX, posY, 4, 4);
+            g.DrawEllipse(pen, PosX, PosY, 4, 4);
         }
 
-        internal void tick()
+        public void tick()
         {
-            posX++;
-            posY++;
+            PosX += Speed;
+            PosY += Speed;
         }
     }
 }
