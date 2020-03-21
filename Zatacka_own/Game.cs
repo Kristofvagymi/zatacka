@@ -21,9 +21,11 @@ namespace Zatacka_own
 
         }
 
-        private void timer_tick(object sender)
+        private void timer_tick(object sender, EventArgs e)
         {
             p1.tick();
+            Console.WriteLine(p1.PosX);
+            Console.WriteLine(p1.PosY);
             Invalidate();
         }
     }

@@ -15,8 +15,8 @@ namespace Zatacka_own
 
         private int direction = 0;
 
-        public int PosX{set;get;}
-        public int PosY { set; get; }
+        public int PosX{ set; get; }
+        public int PosY{ set; get; }
         public int Direction
         {
             set
