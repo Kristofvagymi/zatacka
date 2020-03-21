@@ -10,8 +10,8 @@ namespace Zatacka_own
         public Game()
         {
             p1 = new Player();
-            p1.PosX = 200;
-            p1.PosY = 400;
+            p1.PosX = 100;
+            p1.PosY = 100;
             InitializeComponent();
             timer1.Start();
         }
