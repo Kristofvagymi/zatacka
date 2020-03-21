@@ -10,7 +10,6 @@ namespace Zatacka_own
 {
     class Player
     {
-
         public int PosX{set; get; }
         public int PosY {set; get; }
         public int Speed { set; get; } = 1;
@@ -28,11 +27,8 @@ namespace Zatacka_own
             get { return Direction; }
         }
 
-        public void paint(int x, int y, PaintEventArgs e)
+        internal void paint( PaintEventArgs e)
         {
-            PosX = x;
-            PosY = y;
-
             Graphics g = e.Graphics;
             Pen pen = new Pen(Color.Red, 4);
             g.DrawEllipse(pen, PosX, PosY, 4, 4);

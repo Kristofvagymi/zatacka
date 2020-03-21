@@ -10,29 +10,24 @@ namespace Zatacka_own
         public Game()
         {
             p1 = new Player();
+            p1.PosX = 100;
+            p1.PosY = 100;
             InitializeComponent();
             timer1.Start();
         }
 
         private void paint(object sender, PaintEventArgs e)
         {
-            p1.paint(10, 10, e);
+            p1.paint(e);
         }
 
         int ad = 0;
 
         private void timer_tick(object sender, EventArgs e)
         {
-            //p1.tick();
-            ad++;
-            p1.PosX++;
-            Console.WriteLine(ad);
-            Console.WriteLine(p1.PosX);
-            Application.DoEvents();
-            /*p1.PosX += 1;
-            p1.PosY += 1;
-            Console.WriteLine(p1.PosX);
-            Console.WriteLine(p1.PosY);*/
+            p1.tick();
+            Console.WriteLine("posx: "+p1.PosX);
+            Console.WriteLine("posy: "+p1.PosY);
             Invalidate();
         }
     }
