@@ -10,6 +10,8 @@ namespace Zatacka_own
         public Game()
         {
             p1 = new Player();
+            p1.PosX = 200;
+            p1.PosY = 400;
             InitializeComponent();
             timer1.Start();
         }
@@ -17,15 +19,15 @@ namespace Zatacka_own
         private void paint(object sender, PaintEventArgs e)
         {
 
-            p1.paint(100, 100, e);
+            p1.paint(e);
 
         }
 
         private void timer_tick(object sender, EventArgs e)
         {
             p1.tick();
-            Console.WriteLine(p1.PosX);
-            Console.WriteLine(p1.PosY);
+            Console.WriteLine("posx: "+p1.PosX);
+            Console.WriteLine("posy: "+p1.PosY);
             Invalidate();
         }
     }
