@@ -8,8 +8,6 @@ namespace Zatacka_own
     public partial class Game : Form
     {
         private Player p1;
-        
-        
 
         public Game()
         {
@@ -30,21 +28,20 @@ namespace Zatacka_own
         {
             p1.tick();
 
-            /*Console.WriteLine("posx: "+p1.PosX);
-            Console.WriteLine("posy: "+p1.PosY);*/
-
             //Refresh
             Invalidate();
         }
 
-        private void keyDown(object sender, KeyEventArgs e)
+        private void keyDownEvent(object sender, KeyEventArgs e)
         {
-            p1.keyPressHappened(e.KeyCode);
+            p1.keyDownEvent(e.KeyCode);
+            //e.Handled = true;
         }
 
-        private void keyUp(object sender, KeyEventArgs e)
+        private void keyUpEvent(object sender, KeyEventArgs e)
         {
-            p1.keyPressHappened(e.KeyCode);
+            p1.keyUpEvent(e.KeyCode);
+            //e.Handled = true;
         }
     }
 }

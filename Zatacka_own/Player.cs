@@ -10,21 +10,22 @@ namespace Zatacka_own
 {
     class Player
     {
-        public double PosX {set; get; }
-        public double PosY {set; get; }
-        public int Speed { set; get; } = 2;
+        private double PosX {set; get; }
+        private double PosY {set; get; }
+        private int Speed { set; get; } = 2;
 
-        public double direction;
+        private double direction;
 
-        public double Direction
+        private double Direction
         {
             set
             {
-                if (value > 360)
+                /*if (value > 360)
                     this.direction -= 360;
                 else if (value < 0)
                     this.direction += 360;
-                else this.direction = value;
+                else */
+                this.direction = value;
             }
             get { return this.direction; }
         }
@@ -76,19 +77,21 @@ namespace Zatacka_own
             p1_points.Add(newPoint);
         }
 
-        public void keyPressHappened(Keys key) {
-            if (left.Equals(key)){
-                if (turningLeft)
-                    turningLeft = false;
-                else
-                    turningLeft = true;
-            }
-            else if (right.Equals(key)) {
-                if (turningRight)
-                    turningRight = false;
-                else
-                    turningRight = true;
-            }
+
+        public void keyDownEvent(Keys key) {
+            if (left.Equals(key)) 
+                turningLeft = true;
+
+            if (right.Equals(key))
+                turningRight = true;
+        }
+
+        public void keyUpEvent(Keys key){
+            if (left.Equals(key))
+                turningLeft = false;
+
+            if (right.Equals(key))
+                turningRight = false;
         }
 
     }

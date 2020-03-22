@@ -23,19 +23,24 @@
         {
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer_tick);
             // 
+            // timer2
+            // 
+            this.timer2.Interval = 60;
+            // 
             // Game
             // 
             this.ClientSize = new System.Drawing.Size(622, 380);
             this.Name = "Game";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.paint);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyUp);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyDownEvent);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyUpEvent);
             this.ResumeLayout(false);
 
         }
@@ -43,6 +48,7 @@
 
         #endregion
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
