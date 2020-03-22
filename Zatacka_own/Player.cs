@@ -12,7 +12,7 @@ namespace Zatacka_own
     {
         private double PosX {set; get; }
         private double PosY {set; get; }
-        private int Speed { set; get; } = 2;
+        private int Speed { set; get; } = 3;
 
         private double direction;
 
@@ -20,11 +20,6 @@ namespace Zatacka_own
         {
             set
             {
-                /*if (value > 360)
-                    this.direction -= 360;
-                else if (value < 0)
-                    this.direction += 360;
-                else */
                 this.direction = value;
             }
             get { return this.direction; }
@@ -39,7 +34,7 @@ namespace Zatacka_own
         private Boolean turningRight;
         private Boolean turningLeft;
 
-        public Player(Color lineColor, Keys left, Keys right) {
+        public Player(Color lineColor, Keys left, Keys right,double x,double y,double dir) {
             this.direction = 0;
             this.lineColor = lineColor;
             this.left = left;
@@ -47,8 +42,10 @@ namespace Zatacka_own
 
             p1_points = new List<Point>();
 
-            PosX = 100;
-            PosY = 100;
+            PosX = x;
+            PosY = y;
+            Direction = dir;
+
             Point start = new Point(Convert.ToInt32(PosX), Convert.ToInt32(PosY));
 
             p1_points.Add(start);
