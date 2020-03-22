@@ -8,14 +8,16 @@ namespace Zatacka_own
     public partial class Game : Form
     {
 
-        private List<Player> playerList = new List<Player>();
+        private PlayerList players;
 
 
         public Game()
         {
+            players = new PlayerList();
+
             //Initialise players
-            playerList.Add( new Player(Color.Aquamarine, Keys.Left, Keys.Right, 100, 100, 0));
-            playerList.Add( new Player(Color.Red, Keys.A, Keys.D, 200, 200, 3.14));
+            players.Add( new Player(Color.Aquamarine, Keys.Left, Keys.Right, 100, 100, 0));
+            players.Add( new Player(Color.Red, Keys.A, Keys.D, 200, 200, 3.14));
 
             InitializeComponent();
             timer1.Start();
@@ -23,38 +25,25 @@ namespace Zatacka_own
 
         private void paint(object sender, PaintEventArgs e)
         {
-            foreach (Player player in playerList)
-            {
-                //Draw player's path
-                player.paint(e);
-            }
+            players.paint(e);
         }
 
         private void timer_tick(object sender, EventArgs e)
         {
-            foreach (Player player in playerList)
-            {
-                //Move players
-                player.tick();
-            }
+            players.tick();
+            
             //Refresh
             Invalidate();
         }
 
         private void keyDownEvent(object sender, KeyEventArgs e)
         {
-            foreach (Player player in playerList)
-            {
-                player.keyDownEvent(e.KeyCode);
-            }
+            players.keyPressedEvent(e);
         }
 
         private void keyUpEvent(object sender, KeyEventArgs e)
         {
-            foreach (Player player in playerList)
-            {
-                player.keyUpEvent(e.KeyCode);
-            }
+            players.keyUpEvent(e);
         }
     }
 }
