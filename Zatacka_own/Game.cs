@@ -14,7 +14,7 @@ namespace Zatacka_own
         public Game()
         {
             //Initialise player 1
-            p1 = new Player(Color.Aquamarine);
+            p1 = new Player(Color.Aquamarine, Keys.Left, Keys.Right);
 
             InitializeComponent();
             timer1.Start();
@@ -35,6 +35,16 @@ namespace Zatacka_own
 
             //Refresh
             Invalidate();
+        }
+
+        private void keyDown(object sender, KeyEventArgs e)
+        {
+            p1.keyPressHappened(e.KeyCode);
+        }
+
+        private void keyUp(object sender, KeyEventArgs e)
+        {
+            p1.keyPressHappened(e.KeyCode);
         }
     }
 }

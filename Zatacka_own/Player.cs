@@ -10,58 +10,86 @@ namespace Zatacka_own
 {
     class Player
     {
-        public int PosX{set; get; }
-        public int PosY {set; get; }
-        public int Speed { set; get; } = 1;
+        public double PosX {set; get; }
+        public double PosY {set; get; }
+        public int Speed { set; get; } = 2;
+
+        public double direction;
+
+        public double Direction
+        {
+            set
+            {
+                if (value > 360)
+                    this.direction -= 360;
+                else if (value < 0)
+                    this.direction += 360;
+                else this.direction = value;
+            }
+            get { return this.direction; }
+        }
 
         private List<Point> p1_points;  //List storing player 1's path
 
         private Color lineColor;
+        private Keys left;
+        private Keys right;
 
-        public Player(Color lineColor) {
+        private Boolean turningRight;
+        private Boolean turningLeft;
 
+        public Player(Color lineColor, Keys left, Keys right) {
+            this.direction = 0;
             this.lineColor = lineColor;
+            this.left = left;
+            this.right = right;
 
             p1_points = new List<Point>();
 
             PosX = 100;
             PosY = 100;
-            Point start = new Point(PosX, PosY);
+            Point start = new Point(Convert.ToInt32(PosX), Convert.ToInt32(PosY));
 
             p1_points.Add(start);
             p1_points.Add(start);
-        }
-
-        public int Direction
-        {
-            set
-            {
-                if (value > 360)
-                    Direction = 360;
-                else if (value < 0)
-                    Direction = 0;
-                else Direction = value;
-            }
-            get { return Direction; }
         }
 
         internal void paint( PaintEventArgs e)
         {
-            /*Graphics g = e.Graphics;
-            Pen pen = new Pen(Color.Red, 4);
-            g.DrawEllipse(pen, PosX, PosY, 4, 4);*/
-
             e.Graphics.DrawCurve(new Pen(lineColor, 4), p1_points.ToArray());
         }
 
         public void tick()
         {
-            PosX += Speed;
-            PosY += Speed;
+            if (turningLeft)
+                Direction -= 0.1;
+
+            if (turningRight)
+                Direction += 0.1;
+
+            PosX += Math.Cos(Direction) * Speed;
+
+            PosY += Math.Sin(Direction) * Speed;
 
             //Adding player's new path point to the list
-            Point newPoint = new Point(PosX, PosY);
+            Point newPoint = new Point(Convert.ToInt32(PosX), Convert.ToInt32(PosY));
             p1_points.Add(newPoint);
         }
+
+        public void keyPressHappened(Keys key) {
+            if (left.Equals(key)){
+                if (turningLeft)
+                    turningLeft = false;
+                else
+                    turningLeft = true;
+            }
+            else if (right.Equals(key)) {
+                if (turningRight)
+                    turningRight = false;
+                else
+                    turningRight = true;
+            }
+        }
+
     }
 }
