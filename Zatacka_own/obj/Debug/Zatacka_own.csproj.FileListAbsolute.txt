@@ -18,3 +18,13 @@ C:\Users\Matyas\Desktop\Zatacka\Zatacka_own\obj\Debug\Zatacka_own.csproj.Generat
 C:\Users\Matyas\Desktop\Zatacka\Zatacka_own\obj\Debug\Zatacka_own.csproj.CoreCompileInputs.cache
 C:\Users\Matyas\Desktop\Zatacka\Zatacka_own\obj\Debug\Zatacka_own.exe
 C:\Users\Matyas\Desktop\Zatacka\Zatacka_own\obj\Debug\Zatacka_own.pdb
+C:\Users\Laura\Desktop\zatacka\zatacka\Zatacka_own\bin\Debug\Zatacka_own.exe.config
+C:\Users\Laura\Desktop\zatacka\zatacka\Zatacka_own\bin\Debug\Zatacka_own.exe
+C:\Users\Laura\Desktop\zatacka\zatacka\Zatacka_own\bin\Debug\Zatacka_own.pdb
+C:\Users\Laura\Desktop\zatacka\zatacka\Zatacka_own\obj\Debug\Zatacka_own.csprojAssemblyReference.cache
+C:\Users\Laura\Desktop\zatacka\zatacka\Zatacka_own\obj\Debug\Zatacka_own.Game.resources
+C:\Users\Laura\Desktop\zatacka\zatacka\Zatacka_own\obj\Debug\Zatacka_own.Properties.Resources.resources
+C:\Users\Laura\Desktop\zatacka\zatacka\Zatacka_own\obj\Debug\Zatacka_own.csproj.GenerateResource.cache
+C:\Users\Laura\Desktop\zatacka\zatacka\Zatacka_own\obj\Debug\Zatacka_own.csproj.CoreCompileInputs.cache
+C:\Users\Laura\Desktop\zatacka\zatacka\Zatacka_own\obj\Debug\Zatacka_own.exe
+C:\Users\Laura\Desktop\zatacka\zatacka\Zatacka_own\obj\Debug\Zatacka_own.pdb
