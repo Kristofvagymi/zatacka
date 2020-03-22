@@ -21,8 +21,6 @@ namespace Zatacka_own
             p1.paint(e);
         }
 
-        int ad = 0;
-
         private void timer_tick(object sender, EventArgs e)
         {
             p1.tick();
