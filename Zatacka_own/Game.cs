@@ -14,6 +14,7 @@ namespace Zatacka_own
         public Game()
         {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             DoubleBuffered = true;
 
             players = new PlayerList();
