@@ -16,6 +16,17 @@ namespace Zatacka_own
             playerList.Add(player);
         }
 
+        internal int Size()
+        {
+            return playerList.Count;
+        }
+
+        internal Player getPlayer(int i)
+        {
+            return playerList[i];
+        }
+
+
         internal void paint(PaintEventArgs e)
         {
             foreach (Player player in playerList)
