@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -34,6 +33,8 @@ namespace Zatacka_own
         private Boolean turningRight;
         private Boolean turningLeft;
 
+        private Boolean player_death = false;
+
         public Player(Color lineColor, Keys left, Keys right,double x,double y,double dir) {
             this.direction = 0;
             this.lineColor = lineColor;
@@ -55,23 +56,52 @@ namespace Zatacka_own
         internal void paint( PaintEventArgs e)
         {
             e.Graphics.DrawCurve(new Pen(lineColor, 4), points.ToArray());
+            //e.Graphics.DrawEllipse(new Pen(lineColor, 2), Convert.ToInt32(PosX) - 2, Convert.ToInt32(PosY) - 2, 4, 4);
+        }
+
+        public Color GetPixelColor(int x, int y)
+        {   
+            
+            Color pixelColor = Game.b.GetPixel(x, y);
+
+            return pixelColor;
         }
 
         public void tick()
         {
-            if (turningLeft)
-                Direction -= 0.1;
+            if(player_death == true)
+            {
+                return;
+            }
+            else
+            {
+                if (turningLeft)
+                    Direction -= 0.1;
 
-            if (turningRight)
-                Direction += 0.1;
+                if (turningRight)
+                    Direction += 0.1;
 
-            PosX += Math.Cos(Direction) * Speed;
+                PosX += Math.Cos(Direction) * Speed;
 
-            PosY += Math.Sin(Direction) * Speed;
+                PosY += Math.Sin(Direction) * Speed;
 
-            //Adding player's new path point to the list
-            Point newPoint = new Point(Convert.ToInt32(PosX), Convert.ToInt32(PosY));
-            points.Add(newPoint);
+                //Adding player's new path point to the list
+                Point newPoint = new Point(Convert.ToInt32(PosX), Convert.ToInt32(PosY));
+
+                //Checking background color
+                if (this.GetPixelColor(newPoint.X, newPoint.Y) != Color.FromArgb(255, 240, 240, 240)
+                    && this.GetPixelColor(newPoint.X, newPoint.Y) != Color.FromArgb(0, 0, 0, 0))
+                {
+                    //Death
+                    Console.WriteLine(this + " " + GetPixelColor(newPoint.X, newPoint.Y));
+                    Console.WriteLine(newPoint);
+                    player_death = true;
+                }
+                else
+                {
+                    points.Add(newPoint);
+                }
+            }
         }
 
 
