@@ -9,7 +9,7 @@ namespace Zatacka_own
     {
 
         private PlayerList players;
-
+        public static Bitmap b = new Bitmap(1000, 1000);
 
         public Game()
         {
@@ -30,8 +30,13 @@ namespace Zatacka_own
 
         private void timer_tick(object sender, EventArgs e)
         {
+            //Tick
             players.tick();
-            
+
+            //Redraw the bitmap
+            b = new Bitmap(this.Width, this.Height);
+            DrawToBitmap(b,new Rectangle(0,0,this.Width,this.Height));
+
             //Refresh
             Invalidate();
         }
