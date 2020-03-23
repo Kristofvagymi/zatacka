@@ -25,7 +25,7 @@ namespace Zatacka_own
             get { return this.direction; }
         }
 
-        private List<Point> p1_points;  //List storing player 1's path
+        private List<Point> points;  //List storing player's path
 
         private Color lineColor;
         private Keys left;
@@ -40,7 +40,7 @@ namespace Zatacka_own
             this.left = left;
             this.right = right;
 
-            p1_points = new List<Point>();
+            points = new List<Point>();
 
             PosX = x;
             PosY = y;
@@ -48,13 +48,13 @@ namespace Zatacka_own
 
             Point start = new Point(Convert.ToInt32(PosX), Convert.ToInt32(PosY));
 
-            p1_points.Add(start);
-            p1_points.Add(start);
+            points.Add(start);
+            points.Add(start);
         }
 
         internal void paint( PaintEventArgs e)
         {
-            e.Graphics.DrawCurve(new Pen(lineColor, 4), p1_points.ToArray());
+            e.Graphics.DrawCurve(new Pen(lineColor, 4), points.ToArray());
         }
 
         public void tick()
@@ -71,7 +71,7 @@ namespace Zatacka_own
 
             //Adding player's new path point to the list
             Point newPoint = new Point(Convert.ToInt32(PosX), Convert.ToInt32(PosY));
-            p1_points.Add(newPoint);
+            points.Add(newPoint);
         }
 
 
