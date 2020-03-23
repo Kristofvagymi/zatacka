@@ -13,6 +13,8 @@ namespace Zatacka_own
 
         public Game()
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+
             players = new PlayerList();
 
             //Initialise players
