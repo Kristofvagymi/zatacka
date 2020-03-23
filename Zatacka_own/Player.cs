@@ -89,15 +89,19 @@ namespace Zatacka_own
                 //Adding player's new path point to the list
                 Point newPoint = new Point(Convert.ToInt32(PosX), Convert.ToInt32(PosY));
 
+                //Checking valid X, Y coordinates
+                if (newPoint.X >= Game.ActiveForm.Width || newPoint.X <= 1
+                    || newPoint.Y >= Game.ActiveForm.Height || newPoint.Y <= 1)
+                {
+                    //Death
+                    player_death = true;
+                }
                 //Checking background color
-                if (this.GetPixelColor(newPoint.X, newPoint.Y) != Color.FromArgb(255, 240, 240, 240)
+                else if (this.GetPixelColor(newPoint.X, newPoint.Y) != Color.FromArgb(255, 240, 240, 240)
                     && this.GetPixelColor(newPoint.X, newPoint.Y) != Color.FromArgb(0, 0, 0, 0))
                 {
                     //Death
-                    Console.WriteLine(this + " " + GetPixelColor(newPoint.X, newPoint.Y));
-                    Console.WriteLine(newPoint);
                     player_death = true;
-                    p1_points.Add(newPoint);
                 }
                 else
                 {
