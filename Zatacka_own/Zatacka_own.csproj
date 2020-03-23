@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllDeadPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllDeadPopup.Designer.cs">
+      <DependentUpon>AllDeadPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Player.cs" />
     <Compile Include="Game.cs">
       <SubType>Form</SubType>
@@ -56,6 +62,9 @@
     <Compile Include="PlayerList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AllDeadPopup.resx">
+      <DependentUpon>AllDeadPopup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Game.resx">
       <DependentUpon>Game.cs</DependentUpon>
     </EmbeddedResource>

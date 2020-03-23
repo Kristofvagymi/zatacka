@@ -33,13 +33,15 @@ namespace Zatacka_own
         private Boolean turningRight;
         private Boolean turningLeft;
 
-        private Boolean player_death = false;
+        public Boolean player_death;
 
-        public Player(Color lineColor, Keys left, Keys right,double x,double y,double dir) {
+        public Player(Color lineColor, Keys left, Keys right,double x,double y,double dir,Boolean d) {
             this.direction = 0;
             this.lineColor = lineColor;
             this.left = left;
             this.right = right;
+
+            this.player_death = d;
 
             p1_points = new List<Point>();
 
