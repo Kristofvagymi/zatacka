@@ -24,7 +24,8 @@ namespace Zatacka_own
             get { return this.direction; }
         }
 
-        private List<Point> p1_points;  //List storing player 1's path
+        private List<Point> path;  //List storing player 1's path
+        private const int POINT_MULTIPLIER = 3; 
 
         private Color lineColor;
         private Keys left;
@@ -43,7 +44,7 @@ namespace Zatacka_own
 
             this.player_death = d;
 
-            p1_points = new List<Point>();
+            path = new List<Point>();
 
             PosX = x;
             PosY = y;
@@ -51,15 +52,23 @@ namespace Zatacka_own
 
             Point start = new Point(Convert.ToInt32(PosX), Convert.ToInt32(PosY));
 
-            p1_points.Add(start);
-            p1_points.Add(start);
+            path.Add(start);
+            path.Add(start);
         }
 
         internal void paint( PaintEventArgs e)
         {
-            e.Graphics.DrawCurve(new Pen(lineColor, 4), p1_points.ToArray());
+            e.Graphics.DrawCurve(new Pen(lineColor, 4), path.ToArray());
         }
 
+        //Getting the current score of the player
+        public int GetScore()
+        {
+            return path.Count() * POINT_MULTIPLIER;
+        }
+
+        
+        //Getting the color of the specific pixel pair
         public Color GetPixelColor(int x, int y)
         {   
             
@@ -105,7 +114,7 @@ namespace Zatacka_own
                 }
                 else
                 {
-                    p1_points.Add(newPoint);
+                    path.Add(newPoint);
                 }
             }
                 

@@ -34,6 +34,7 @@
             // 
             // restart_button
             // 
+            this.restart_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.restart_button.Font = new System.Drawing.Font("Ravie", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.restart_button.Location = new System.Drawing.Point(14, 13);
             this.restart_button.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -46,6 +47,7 @@
             // 
             // exit_button
             // 
+            this.exit_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.exit_button.Font = new System.Drawing.Font("Ravie", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exit_button.Location = new System.Drawing.Point(335, 13);
             this.exit_button.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
