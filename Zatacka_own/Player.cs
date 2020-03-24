@@ -25,7 +25,7 @@ namespace Zatacka_own
         }
 
         private List<Point> path;  //List storing player 1's path
-        private const int POINT_MULTIPLIER = 3; 
+        public static List<Player> result;
 
         private Color lineColor;
         private Keys left;
@@ -44,7 +44,8 @@ namespace Zatacka_own
 
             this.player_death = d;
 
-            path = new List<Point>();
+            path = new List<Point>(); //Path of the player
+            result = new List<Player>(); //Result of one round
 
             PosX = x;
             PosY = y;
@@ -56,17 +57,16 @@ namespace Zatacka_own
             path.Add(start);
         }
 
+        //Getting the Color of the current player (can be changed to Name later)
+        public Color GetColor()
+        {
+            return lineColor;
+        }
+
         internal void paint( PaintEventArgs e)
         {
             e.Graphics.DrawCurve(new Pen(lineColor, 4), path.ToArray());
         }
-
-        //Getting the current score of the player
-        public int GetScore()
-        {
-            return path.Count() * POINT_MULTIPLIER;
-        }
-
         
         //Getting the color of the specific pixel pair
         public Color GetPixelColor(int x, int y)
@@ -104,6 +104,7 @@ namespace Zatacka_own
                 {
                     //Death
                     player_death = true;
+                    result.Add(this);//Adding to the result list
                 }
                 //Checking background color
                 else if (this.GetPixelColor(newPoint.X, newPoint.Y) != Color.FromArgb(255, 240, 240, 240)
@@ -111,17 +112,14 @@ namespace Zatacka_own
                 {
                     //Death
                     player_death = true;
+                    result.Add(this);//Adding to the result list
                 }
                 else
                 {
                     path.Add(newPoint);
                 }
             }
-                
-            
-            
         }
-
 
         public void keyDownEvent(Keys key) {
             if (left.Equals(key)) 

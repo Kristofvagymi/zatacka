@@ -30,6 +30,7 @@
         {
             this.restart_button = new System.Windows.Forms.Button();
             this.exit_button = new System.Windows.Forms.Button();
+            this.scoreBoard = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // restart_button
@@ -58,12 +59,25 @@
             this.exit_button.UseVisualStyleBackColor = true;
             this.exit_button.Click += new System.EventHandler(this.exit_button_Click);
             // 
+            // scoreBoard
+            // 
+            this.scoreBoard.AcceptsReturn = true;
+            this.scoreBoard.Location = new System.Drawing.Point(199, 193);
+            this.scoreBoard.MaximumSize = new System.Drawing.Size(250, 75);
+            this.scoreBoard.MinimumSize = new System.Drawing.Size(250, 30);
+            this.scoreBoard.Multiline = true;
+            this.scoreBoard.Name = "scoreBoard";
+            this.scoreBoard.ReadOnly = true;
+            this.scoreBoard.Size = new System.Drawing.Size(250, 75);
+            this.scoreBoard.TabIndex = 2;
+            // 
             // AllDeadPopup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Red;
-            this.ClientSize = new System.Drawing.Size(650, 202);
+            this.ClientSize = new System.Drawing.Size(650, 315);
+            this.Controls.Add(this.scoreBoard);
             this.Controls.Add(this.exit_button);
             this.Controls.Add(this.restart_button);
             this.Font = new System.Drawing.Font("Ravie", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -72,6 +86,7 @@
             this.Name = "AllDeadPopup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -79,5 +94,6 @@
 
         private System.Windows.Forms.Button restart_button;
         private System.Windows.Forms.Button exit_button;
+        public System.Windows.Forms.TextBox scoreBoard;
     }
 }
