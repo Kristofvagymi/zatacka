@@ -31,18 +31,12 @@ namespace Zatacka_own
             this.lineColor = lineColor;
             this.left = left;
             this.right = right;
-<<<<<<< HEAD
 
-            this.player_death = d;
-
-            path = new List<Point>(); //Path of the player 
-
-=======
             
             path = new List<Point>(); //Path of the player
             result = new List<Player>(); //Result of one round
             
->>>>>>> 2db1500ef10e6ae87a8a66b4663f009ce402f26a
+
             PosX = x;
             PosY = y;
             Direction = dir;
