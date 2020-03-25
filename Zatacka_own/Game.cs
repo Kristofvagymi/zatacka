@@ -21,8 +21,8 @@ namespace Zatacka_own
             players = new PlayerList();
 
             //Initialise players
-            players.Add( new Player(Color.Aquamarine, Keys.Left, Keys.Right, 100, 100, 0,false));
-            players.Add( new Player(Color.Red, Keys.A, Keys.D, 200, 200, 3.14,false));
+            players.Add( new Player(Color.Aquamarine, Keys.Left, Keys.Right, 100, 100, 0));
+            players.Add( new Player(Color.Red, Keys.A, Keys.D, 200, 200, 3.14));
 
             InitializeComponent();
 
@@ -42,20 +42,25 @@ namespace Zatacka_own
             }
         }
 
-        private void AllDead()
+        private void OnePlayerLeft()
         {
-            int deathCounter = 0;
+            int aliveCounter = 0;
+            Player playerAlive = null;
+
             for (int i = 0; i < players.Size(); i++)
             {
-                Player p = players.getPlayer(i);
-                if (p.player_death == true)
+                Player currentPlayer = players.getPlayer(i);
+
+                if (currentPlayer.Player_death == false)
                 {
-                    deathCounter++;
+                    aliveCounter++;
+                    playerAlive = currentPlayer;
                 }
             }
 
-            if (deathCounter == players.Size())
+            if (aliveCounter == 1)
             {
+                Player.result.Add(playerAlive);
                 this.SuspendLayout();
                 timer1.Stop();
 
@@ -79,7 +84,7 @@ namespace Zatacka_own
             DrawToBitmap(b,new Rectangle(0,0,this.Width,this.Height));
 
             //Alldead
-            AllDead();
+            OnePlayerLeft();
 
             //Refresh
             Invalidate();
@@ -93,16 +98,6 @@ namespace Zatacka_own
         private void keyUpEvent(object sender, KeyEventArgs e)
         {
             players.keyUpEvent(e);
-        }
-
-        private void Game_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void fileSystemWatcher1_Changed(object sender, System.IO.FileSystemEventArgs e)
-        {
-
         }
 
     }

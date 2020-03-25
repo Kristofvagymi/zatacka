@@ -13,23 +13,10 @@ namespace Zatacka_own
         private double PosY {set; get; }
         private int Speed { set; get; } = 3;
 
-        private double direction;
-
-        private double Direction
-        {
-            set
-            {
-                this.direction = value;
-            }
-            get { return this.direction; }
-        }
-
-<<<<<<< HEAD
-        private List<Point> points;  //List storing player's path
-=======
+        private double Direction { set; get; }
+        
         private List<Point> path;  //List storing player 1's path
         public static List<Player> result;
->>>>>>> 5332a05305431123ee741957d7781fff634e89b9
 
         private Color lineColor;
         private Keys left;
@@ -38,47 +25,30 @@ namespace Zatacka_own
         private Boolean turningRight;
         private Boolean turningLeft;
 
-        public Boolean player_death;
+        public Boolean Player_death { set; get; } = false;
 
-        public Player(Color lineColor, Keys left, Keys right,double x,double y,double dir,Boolean d) {
-            this.direction = 0;
+        public Player(Color lineColor, Keys left, Keys right,double x,double y,double dir) {
             this.lineColor = lineColor;
             this.left = left;
             this.right = right;
             
-            points = new List<Point>();
-            this.player_death = d;
-
-<<<<<<< HEAD
-=======
             path = new List<Point>(); //Path of the player
             result = new List<Player>(); //Result of one round
-
->>>>>>> 5332a05305431123ee741957d7781fff634e89b9
+            
             PosX = x;
             PosY = y;
             Direction = dir;
 
             Point start = new Point(Convert.ToInt32(PosX), Convert.ToInt32(PosY));
 
-<<<<<<< HEAD
-            points.Add(start);
-            points.Add(start);
-=======
             path.Add(start);
             path.Add(start);
->>>>>>> 5332a05305431123ee741957d7781fff634e89b9
         }
 
         //Getting the Color of the current player (can be changed to Name later)
         public Color GetColor()
         {
-<<<<<<< HEAD
-            e.Graphics.DrawCurve(new Pen(lineColor, 4), points.ToArray());
-            //e.Graphics.DrawEllipse(new Pen(lineColor, 2), Convert.ToInt32(PosX) - 2, Convert.ToInt32(PosY) - 2, 4, 4);
-=======
             return lineColor;
->>>>>>> 5332a05305431123ee741957d7781fff634e89b9
         }
 
         internal void paint( PaintEventArgs e)
@@ -88,16 +58,13 @@ namespace Zatacka_own
         
         //Getting the color of the specific pixel pair
         public Color GetPixelColor(int x, int y)
-        {   
-            
-            Color pixelColor = Game.b.GetPixel(x, y);
-
-            return pixelColor;
+        {
+            return Game.b.GetPixel(x, y);
         }
 
         public void tick()
         {
-            if(player_death == true)
+            if(Player_death == true)
             {
                 return;
             }
@@ -121,7 +88,7 @@ namespace Zatacka_own
                     || newPoint.Y >= Game.ActiveForm.Height || newPoint.Y <= 1)
                 {
                     //Death
-                    player_death = true;
+                    Player_death = true;
                     result.Add(this);//Adding to the result list
                 }
                 //Checking background color
@@ -129,16 +96,12 @@ namespace Zatacka_own
                     && this.GetPixelColor(newPoint.X, newPoint.Y) != Color.FromArgb(0, 0, 0, 0))
                 {
                     //Death
-                    player_death = true;
+                    Player_death = true;
                     result.Add(this);//Adding to the result list
                 }
                 else
                 {
-<<<<<<< HEAD
-                    points.Add(newPoint);
-=======
                     path.Add(newPoint);
->>>>>>> 5332a05305431123ee741957d7781fff634e89b9
                 }
             }
         }
