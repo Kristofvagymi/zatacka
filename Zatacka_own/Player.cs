@@ -25,7 +25,7 @@ namespace Zatacka_own
         }
 
         private List<Point> path;  //List storing player 1's path
-        public static List<Player> result;
+        public static List<Player> result = new List<Player>(); //Result of one round;
 
         private Color lineColor;
         private Keys left;
@@ -44,8 +44,7 @@ namespace Zatacka_own
 
             this.player_death = d;
 
-            path = new List<Point>(); //Path of the player
-            result = new List<Player>(); //Result of one round
+            path = new List<Point>(); //Path of the player 
 
             PosX = x;
             PosY = y;
@@ -57,7 +56,7 @@ namespace Zatacka_own
             path.Add(start);
         }
 
-        //Getting the Color of the current player (can be changed to Name later)
+        //Getting the Color of the current player
         public Color GetColor()
         {
             return lineColor;
