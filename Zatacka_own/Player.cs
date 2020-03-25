@@ -11,7 +11,8 @@ namespace Zatacka_own
     {
         private double PosX {set; get; }
         private double PosY {set; get; }
-        private int Speed { set; get; } = 3;
+        public static int Speed { set; get; }
+        public static double Turn { set; get; }
 
         private double Direction { set; get; }
         
@@ -73,10 +74,10 @@ namespace Zatacka_own
             else
             {
                 if (turningLeft)
-                    Direction -= 0.1;
+                    Direction -= Turn;
 
                 if (turningRight)
-                    Direction += 0.1;
+                    Direction += Turn;
 
                 PosX += Math.Cos(Direction) * Speed;
 

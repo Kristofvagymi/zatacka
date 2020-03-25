@@ -14,7 +14,21 @@ namespace Zatacka_own
     {
         public Settings()
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             InitializeComponent();
+            Player.Speed = this.speedBar.Value; //Default
+            Player.Turn = this.turnspeedBar.Value * 0.1; //Default
+        }
+
+        private void speedBar_Scroll(object sender, EventArgs e)
+        {
+            Player.Speed = this.speedBar.Value;
+        }
+
+        private void turnspeedBar_Scroll(object sender, EventArgs e)
+        {
+            Player.Turn = this.turnspeedBar.Value * 0.1;
         }
     }
 }
