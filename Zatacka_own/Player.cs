@@ -11,7 +11,7 @@ namespace Zatacka_own
     {
         private double PosX {set; get; }
         private double PosY {set; get; }
-        private int Speed { set; get; } = 3;
+        private int Speed { set; get; } = 5;
 
         private double Direction { set; get; }
         
@@ -53,7 +53,7 @@ namespace Zatacka_own
 
         internal void paint( PaintEventArgs e)
         {
-            e.Graphics.DrawCurve(new Pen(lineColor, 4), path.ToArray());
+            e.Graphics.DrawCurve(new Pen(lineColor, 6), path.ToArray());
         }
         
         //Getting the color of the specific pixel pair
@@ -80,8 +80,14 @@ namespace Zatacka_own
 
                 PosY += Math.Sin(Direction) * Speed;
 
+                PosX = Convert.ToInt32(Math.Floor(PosX));
+
+                PosY = Convert.ToInt32(Math.Floor(PosY));
+
                 //Adding player's new path point to the list
                 Point newPoint = new Point(Convert.ToInt32(PosX), Convert.ToInt32(PosY));
+
+
 
                 //Checking valid X, Y coordinates
                 if (newPoint.X >= Game.ActiveForm.Width || newPoint.X <= 1
@@ -103,6 +109,13 @@ namespace Zatacka_own
                 {
                     path.Add(newPoint);
                 }
+            }
+        }
+
+        internal void printPath()
+        {
+            foreach(Point p in path){
+                Console.WriteLine(p.X+" "+p.Y);
             }
         }
 
