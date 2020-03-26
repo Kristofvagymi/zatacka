@@ -11,12 +11,14 @@ namespace Zatacka_own
     {
         private double PosX {set; get; }
         private double PosY {set; get; }
-        private int Speed { set; get; } = 5;
+
+        public static int Speed { set; get; } = 5;
+        public static double Turn { set; get; } = 0.1;
 
         private double Direction { set; get; }
         
         private List<Point> path;  //List storing player 1's path
-        public static List<Player> result;
+        public static List<Player> result = new List<Player>(); //Result of one round;
 
         private Color lineColor;
         private Keys left;
@@ -31,10 +33,12 @@ namespace Zatacka_own
             this.lineColor = lineColor;
             this.left = left;
             this.right = right;
+
             
             path = new List<Point>(); //Path of the player
             result = new List<Player>(); //Result of one round
             
+
             PosX = x;
             PosY = y;
             Direction = dir;
@@ -45,7 +49,7 @@ namespace Zatacka_own
             path.Add(start);
         }
 
-        //Getting the Color of the current player (can be changed to Name later)
+        //Getting the Color of the current player
         public Color GetColor()
         {
             return lineColor;
@@ -71,10 +75,10 @@ namespace Zatacka_own
             else
             {
                 if (turningLeft)
-                    Direction -= 0.1;
+                    Direction -= Turn;
 
                 if (turningRight)
-                    Direction += 0.1;
+                    Direction += Turn;
 
                 PosX += Math.Cos(Direction) * Speed;
 
