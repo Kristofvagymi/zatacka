@@ -52,7 +52,7 @@ namespace Zatacka_own
             this.speedBar.Name = "speedBar";
             this.speedBar.Size = new System.Drawing.Size(236, 45);
             this.speedBar.TabIndex = 0;
-            this.speedBar.Value = Player.Speed;
+            this.speedBar.Value = (int)Player.Speed;
             // 
             // turnspeedBar
             // 
