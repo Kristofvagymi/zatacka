@@ -1,4 +1,6 @@
-﻿namespace Zatacka_own
+﻿using System;
+
+namespace Zatacka_own
 {
     partial class Settings
     {
@@ -50,8 +52,7 @@
             this.speedBar.Name = "speedBar";
             this.speedBar.Size = new System.Drawing.Size(236, 45);
             this.speedBar.TabIndex = 0;
-            this.speedBar.Value = 6;
-            this.speedBar.Scroll += new System.EventHandler(this.speedBar_Scroll);
+            this.speedBar.Value = Player.Speed;
             // 
             // turnspeedBar
             // 
@@ -60,8 +61,7 @@
             this.turnspeedBar.Name = "turnspeedBar";
             this.turnspeedBar.Size = new System.Drawing.Size(236, 45);
             this.turnspeedBar.TabIndex = 1;
-            this.turnspeedBar.Value = 1;
-            this.turnspeedBar.Scroll += new System.EventHandler(this.turnspeedBar_Scroll);
+            this.turnspeedBar.Value = Convert.ToInt32(Player.Turn / 0.1);
             // 
             // holesBar
             // 
@@ -115,6 +115,7 @@
             this.backButton.TabIndex = 7;
             this.backButton.Text = "Back";
             this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // applyButton
             // 
@@ -124,6 +125,7 @@
             this.applyButton.TabIndex = 8;
             this.applyButton.Text = "Apply";
             this.applyButton.UseVisualStyleBackColor = true;
+            this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
             // 
             // Settings
             // 

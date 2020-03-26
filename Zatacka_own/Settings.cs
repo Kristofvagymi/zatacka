@@ -14,21 +14,30 @@ namespace Zatacka_own
     {
         public Settings()
         {
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None; //Getting rid of title bar
             InitializeComponent();
             Player.Speed = this.speedBar.Value; //Default
             Player.Turn = this.turnspeedBar.Value * 0.1; //Default
         }
 
-        private void speedBar_Scroll(object sender, EventArgs e)
+        private void backToMenu()
         {
-            Player.Speed = this.speedBar.Value;
+            this.Hide();
+            WelcomePage wp = new WelcomePage();
+            wp.Show();
         }
 
-        private void turnspeedBar_Scroll(object sender, EventArgs e)
+        private void applyButton_Click(object sender, EventArgs e)
         {
+            Player.Speed = this.speedBar.Value;
             Player.Turn = this.turnspeedBar.Value * 0.1;
+            backToMenu();
+
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            backToMenu();
         }
     }
 }
