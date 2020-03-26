@@ -66,8 +66,6 @@ namespace Zatacka_own
 
                 ListResults();
                 popup.Show();
-
-                playerAlive.printPath();
             }
         }
 

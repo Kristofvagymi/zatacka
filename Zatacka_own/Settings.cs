@@ -20,6 +20,7 @@ namespace Zatacka_own
             Player.Turn = this.turnspeedBar.Value * 0.1; //Default
         }
 
+        //Takes you back to the Main Menu (Welcome Page)
         private void backToMenu()
         {
             this.Hide();
@@ -27,6 +28,7 @@ namespace Zatacka_own
             wp.Show();
         }
 
+        //Apply button click action
         private void applyButton_Click(object sender, EventArgs e)
         {
             Player.Speed = this.speedBar.Value;
@@ -35,6 +37,7 @@ namespace Zatacka_own
 
         }
 
+        //Back button click action
         private void backButton_Click(object sender, EventArgs e)
         {
             backToMenu();

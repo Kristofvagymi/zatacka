@@ -73,7 +73,7 @@ namespace Zatacka_own
             // speedLabel
             // 
             this.speedLabel.AutoSize = true;
-            this.speedLabel.Location = new System.Drawing.Point(454, 96);
+            this.speedLabel.Location = new System.Drawing.Point(426, 96);
             this.speedLabel.Name = "speedLabel";
             this.speedLabel.Size = new System.Drawing.Size(38, 13);
             this.speedLabel.TabIndex = 3;
@@ -82,7 +82,7 @@ namespace Zatacka_own
             // turnLabel
             // 
             this.turnLabel.AutoSize = true;
-            this.turnLabel.Location = new System.Drawing.Point(454, 147);
+            this.turnLabel.Location = new System.Drawing.Point(426, 147);
             this.turnLabel.Name = "turnLabel";
             this.turnLabel.Size = new System.Drawing.Size(61, 13);
             this.turnLabel.TabIndex = 4;
@@ -91,7 +91,7 @@ namespace Zatacka_own
             // holesLabel
             // 
             this.holesLabel.AutoSize = true;
-            this.holesLabel.Location = new System.Drawing.Point(454, 199);
+            this.holesLabel.Location = new System.Drawing.Point(426, 199);
             this.holesLabel.Name = "holesLabel";
             this.holesLabel.Size = new System.Drawing.Size(64, 13);
             this.holesLabel.TabIndex = 5;
@@ -101,7 +101,7 @@ namespace Zatacka_own
             // 
             this.settingsLabel.AutoSize = true;
             this.settingsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.settingsLabel.Location = new System.Drawing.Point(351, 31);
+            this.settingsLabel.Location = new System.Drawing.Point(265, 25);
             this.settingsLabel.Name = "settingsLabel";
             this.settingsLabel.Size = new System.Drawing.Size(90, 25);
             this.settingsLabel.TabIndex = 6;
@@ -109,9 +109,9 @@ namespace Zatacka_own
             // 
             // backButton
             // 
-            this.backButton.Location = new System.Drawing.Point(238, 284);
+            this.backButton.Location = new System.Drawing.Point(110, 283);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(75, 23);
+            this.backButton.Size = new System.Drawing.Size(118, 57);
             this.backButton.TabIndex = 7;
             this.backButton.Text = "Back";
             this.backButton.UseVisualStyleBackColor = true;
@@ -119,9 +119,9 @@ namespace Zatacka_own
             // 
             // applyButton
             // 
-            this.applyButton.Location = new System.Drawing.Point(438, 283);
+            this.applyButton.Location = new System.Drawing.Point(350, 283);
             this.applyButton.Name = "applyButton";
-            this.applyButton.Size = new System.Drawing.Size(75, 23);
+            this.applyButton.Size = new System.Drawing.Size(114, 57);
             this.applyButton.TabIndex = 8;
             this.applyButton.Text = "Apply";
             this.applyButton.UseVisualStyleBackColor = true;
@@ -131,7 +131,7 @@ namespace Zatacka_own
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(589, 450);
             this.Controls.Add(this.applyButton);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.settingsLabel);

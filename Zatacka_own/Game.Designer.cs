@@ -28,6 +28,7 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer_tick);
+            this.timer1.Interval = 17;
             // 
             // Game
             // 
