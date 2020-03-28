@@ -10,12 +10,14 @@ namespace Zatacka_own
 
         private PlayerList players;
         private AllDeadPopup popup;
-        public static Bitmap b = new Bitmap(1000, 1000);
+        public static Bitmap b;
 
         public Game()
         {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+
+            b = new Bitmap(this.Width, this.Height);
             DoubleBuffered = true;
 
             players = new PlayerList();
@@ -72,6 +74,7 @@ namespace Zatacka_own
         private void paint(object sender, PaintEventArgs e)
         {
             players.paint(e);
+            //Dispose();
         }
 
         private void timer_tick(object sender, EventArgs e)
@@ -80,6 +83,7 @@ namespace Zatacka_own
             players.tick();
 
             //Redraw the bitmap
+            b.Dispose();
             b = new Bitmap(this.Width, this.Height);
             DrawToBitmap(b,new Rectangle(0,0,this.Width,this.Height));
 
@@ -99,6 +103,5 @@ namespace Zatacka_own
         {
             players.keyUpEvent(e);
         }
-
     }
 }
