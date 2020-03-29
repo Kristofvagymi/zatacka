@@ -10,15 +10,21 @@ namespace Zatacka_own
 
         private PlayerList players;
         private AllDeadPopup popup;
+<<<<<<< HEAD
         public static int tickCounter = 0;
         public static int gapCounter = 0;
         public static int Gap { set; get; } = 1;
         public static Bitmap b = new Bitmap(1000, 1000);
+=======
+        public static Bitmap b;
+>>>>>>> 38440a429ccf452acd85ae100c70dc12e64e5fa6
 
         public Game()
         {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+
+            b = new Bitmap(this.Width, this.Height);
             DoubleBuffered = true;
 
             players = new PlayerList();
@@ -75,6 +81,7 @@ namespace Zatacka_own
         private void paint(object sender, PaintEventArgs e)
         {
             players.paint(e);
+            //Dispose();
         }
 
         //Reset tick and gap counter
@@ -113,6 +120,7 @@ namespace Zatacka_own
             advanceCounters();
 
             //Redraw the bitmap
+            b.Dispose();
             b = new Bitmap(this.Width, this.Height);
             DrawToBitmap(b,new Rectangle(0,0,this.Width,this.Height));
 
@@ -132,6 +140,5 @@ namespace Zatacka_own
         {
             players.keyUpEvent(e);
         }
-
     }
 }
