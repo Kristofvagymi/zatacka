@@ -21,6 +21,7 @@ namespace Zatacka_own
         private List<PointF> path;  //List storing player 1's path
         private List<PointF> gapPath; //gap path
         private List<List<PointF>> gapList; //list of gap paths
+        private List<List<PointF>> pathList; //list of paths
         public static List<Player> result = new List<Player>(); //Result of one round;
 
         private Color lineColor;
@@ -40,6 +41,7 @@ namespace Zatacka_own
 
 
             path = new List<PointF>(); //Path of the player
+            pathList = new List<List<PointF>>(); //List containing the complete path
             gapPath = new List<PointF>();
             gapList = new List<List<PointF>>();
             result = new List<Player>(); //Result of one round
@@ -63,12 +65,15 @@ namespace Zatacka_own
 
         internal void paint(PaintEventArgs e)
         {
-            e.Graphics.DrawCurve(new Pen(lineColor, 6), path.ToArray());
+            Graphics grap = e.Graphics;
+
+            grap.DrawCurve(new Pen(lineColor, 6), path.ToArray());
+
             foreach (List<PointF> g in gapList)
             {
                 if (g.Count > 1)
                 {
-                    e.Graphics.DrawCurve(new Pen(Game.ActiveForm.BackColor, 6), g.ToArray());
+                    grap.DrawCurve(new Pen(Game.ActiveForm.BackColor, 6), g.ToArray());
                 }
             }
         }
@@ -85,6 +90,15 @@ namespace Zatacka_own
             {
                 gapList.Add(gapPath);
                 gapPath.Clear();
+            }
+        }
+
+        public void addPathToList()
+        {
+            if(Game.tickCounter == Game.Gap * 20)
+            {
+                pathList.Add(path);
+                path.Clear();
             }
         }
 
@@ -131,12 +145,14 @@ namespace Zatacka_own
                 }
                 else
                 {
-                    path.Add(newPoint);
                     if (Game.gapCounter != 0)
                     {
                         gapPath.Add(newPoint);
                         addGapToList();
                     }
+                    path.Add(newPoint);
+                    //addPathToList();
+                        
                 }
             }
         }
