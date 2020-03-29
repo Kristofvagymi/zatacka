@@ -15,9 +15,12 @@ namespace Zatacka_own
         public static double Speed { set; get; } = 2.5;
         public static double Turn { set; get; } = 0.1;
 
+
         private double Direction { set; get; }
 
         private List<PointF> path;  //List storing player 1's path
+        private List<PointF> gapPath; //gap path
+        private List<List<PointF>> gapList; //list of gap paths
         public static List<Player> result = new List<Player>(); //Result of one round;
 
         private Color lineColor;
@@ -37,6 +40,8 @@ namespace Zatacka_own
 
 
             path = new List<PointF>(); //Path of the player
+            gapPath = new List<PointF>();
+            gapList = new List<List<PointF>>();
             result = new List<Player>(); //Result of one round
 
 
@@ -59,12 +64,28 @@ namespace Zatacka_own
         internal void paint(PaintEventArgs e)
         {
             e.Graphics.DrawCurve(new Pen(lineColor, 6), path.ToArray());
+            foreach (List<PointF> g in gapList)
+            {
+                if (g.Count > 1)
+                {
+                    e.Graphics.DrawCurve(new Pen(Game.ActiveForm.BackColor, 6), g.ToArray());
+                }
+            }
         }
 
         //Getting the color of the specific pixel pair
         public Color GetPixelColor(int x, int y)
         {
             return Game.b.GetPixel(x, y);
+        }
+
+        public void addGapToList()
+        {
+            if(Game.gapCounter == 20)
+            {
+                gapList.Add(gapPath);
+                gapPath.Clear();
+            }
         }
 
         public void tick()
@@ -111,6 +132,11 @@ namespace Zatacka_own
                 else
                 {
                     path.Add(newPoint);
+                    if (Game.gapCounter != 0)
+                    {
+                        gapPath.Add(newPoint);
+                        addGapToList();
+                    }
                 }
             }
         }

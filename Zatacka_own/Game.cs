@@ -10,6 +10,9 @@ namespace Zatacka_own
 
         private PlayerList players;
         private AllDeadPopup popup;
+        public static int tickCounter = 0;
+        public static int gapCounter = 0;
+        public static int Gap { set; get; } = 1;
         public static Bitmap b = new Bitmap(1000, 1000);
 
         public Game()
@@ -74,10 +77,40 @@ namespace Zatacka_own
             players.paint(e);
         }
 
+        //Reset tick and gap counter
+        private void gapReset()
+        {
+            tickCounter = 0;
+            gapCounter = 0;
+        }
+
+        //Advance counters
+        private void advanceCounters()
+        {
+            if (tickCounter >= Gap * 20)
+            {
+                if (gapCounter == 20)
+                {
+                    gapReset(); //Reset
+                }
+                else
+                {
+                    gapCounter++;
+                }
+            }
+            else
+            {
+                tickCounter++;
+            }
+        }
+
         private void timer_tick(object sender, EventArgs e)
         {
             //Tick
             players.tick();
+
+            //Advance counters
+            advanceCounters();
 
             //Redraw the bitmap
             b = new Bitmap(this.Width, this.Height);
