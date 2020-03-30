@@ -10,14 +10,13 @@ namespace Zatacka_own
 
         private PlayerList players;
         private AllDeadPopup popup;
-<<<<<<< HEAD
+
         public static int tickCounter = 0;
         public static int gapCounter = 0;
-        public static int Gap { set; get; } = 1;
-        public static Bitmap b = new Bitmap(1000, 1000);
-=======
+        public static int GapLength { set; get; } = 5; //Has to be minimum 2
+
         public static Bitmap b;
->>>>>>> 38440a429ccf452acd85ae100c70dc12e64e5fa6
+
 
         public Game()
         {
@@ -94,9 +93,9 @@ namespace Zatacka_own
         //Advance counters
         private void advanceCounters()
         {
-            if (tickCounter >= Gap * 20)
+            if (tickCounter >=  30)
             {
-                if (gapCounter == 20)
+                if (gapCounter == GapLength)
                 {
                     gapReset(); //Reset
                 }

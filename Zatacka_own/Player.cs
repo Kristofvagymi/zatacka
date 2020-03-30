@@ -19,9 +19,10 @@ namespace Zatacka_own
         private double Direction { set; get; }
 
         private List<PointF> path;  //List storing player 1's path
+
         private List<PointF> gapPath; //gap path
+        private int gCounter = 0; // counter for gapList
         private List<List<PointF>> gapList; //list of gap paths
-        private List<List<PointF>> pathList; //list of paths
         public static List<Player> result = new List<Player>(); //Result of one round;
 
         private Color lineColor;
@@ -41,7 +42,7 @@ namespace Zatacka_own
 
 
             path = new List<PointF>(); //Path of the player
-            pathList = new List<List<PointF>>(); //List containing the complete path
+
             gapPath = new List<PointF>();
             gapList = new List<List<PointF>>();
             result = new List<Player>(); //Result of one round
@@ -69,13 +70,17 @@ namespace Zatacka_own
 
             grap.DrawCurve(new Pen(lineColor, 6), path.ToArray());
 
-            foreach (List<PointF> g in gapList)
+            if (gapPath.Count > 1)
             {
-                if (g.Count > 1)
+                grap.DrawCurve(new Pen(Game.ActiveForm.BackColor, 6), gapPath.ToArray());
+            }
+            if(gapList.Count > 0)
+            {
+                foreach (List<PointF> g in gapList)
                 {
                     grap.DrawCurve(new Pen(Game.ActiveForm.BackColor, 6), g.ToArray());
                 }
-            }
+            }  
         }
 
         //Getting the color of the specific pixel pair
@@ -84,22 +89,20 @@ namespace Zatacka_own
             return Game.b.GetPixel(x, y);
         }
 
+        //Adding the gap to the list when it reaches the GapLength
         public void addGapToList()
         {
-            if(Game.gapCounter == 20)
+            if (Game.gapCounter == Game.GapLength)
             {
-                gapList.Add(gapPath);
+                gapList.Add(new List<PointF>());
+                foreach (PointF p in gapPath)
+                {
+                    gapList[gCounter].Add(p);
+                }
+                gCounter++;
                 gapPath.Clear();
             }
-        }
-
-        public void addPathToList()
-        {
-            if(Game.tickCounter == Game.Gap * 20)
-            {
-                pathList.Add(path);
-                path.Clear();
-            }
+            
         }
 
         public void tick()
@@ -148,11 +151,9 @@ namespace Zatacka_own
                     if (Game.gapCounter != 0)
                     {
                         gapPath.Add(newPoint);
-                        addGapToList();
+                        addGapToList(); //Append gap
                     }
-                    path.Add(newPoint);
-                    //addPathToList();
-                        
+                    path.Add(newPoint); //Append path
                 }
             }
         }
