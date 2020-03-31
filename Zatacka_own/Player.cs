@@ -70,11 +70,11 @@ namespace Zatacka_own
 
             grap.DrawCurve(new Pen(lineColor, 6), path.ToArray());
 
-            if (gapPath.Count > 1)
+            if (gapPath.Count > 1 && Game.GapLength > 1)
             {
                 grap.DrawCurve(new Pen(Game.ActiveForm.BackColor, 6), gapPath.ToArray());
             }
-            if(gapList.Count > 0)
+            if(gapList.Count > 0 && Game.GapLength > 1)
             {
                 foreach (List<PointF> g in gapList)
                 {
@@ -148,7 +148,7 @@ namespace Zatacka_own
                 }
                 else
                 {
-                    if (Game.gapCounter != 0)
+                    if (Game.gapCounter != 0 && Game.GapLength > 1)
                     {
                         gapPath.Add(newPoint);
                         addGapToList(); //Append gap

@@ -13,7 +13,7 @@ namespace Zatacka_own
 
         public static int tickCounter = 0;
         public static int gapCounter = 0;
-        public static int GapLength { set; get; } = 5; //Has to be minimum 2
+        public static int GapLength { set; get; } = 0; //Has to be even
 
         public static Bitmap b;
 
@@ -93,20 +93,23 @@ namespace Zatacka_own
         //Advance counters
         private void advanceCounters()
         {
-            if (tickCounter >=  30)
+            if(GapLength > 1)
             {
-                if (gapCounter == GapLength)
+                if (tickCounter >= 30)
                 {
-                    gapReset(); //Reset
+                    if (gapCounter == GapLength)
+                    {
+                        gapReset(); //Reset
+                    }
+                    else
+                    {
+                        gapCounter++;
+                    }
                 }
                 else
                 {
-                    gapCounter++;
+                    tickCounter++;
                 }
-            }
-            else
-            {
-                tickCounter++;
             }
         }
 

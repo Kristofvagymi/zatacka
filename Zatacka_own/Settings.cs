@@ -33,6 +33,7 @@ namespace Zatacka_own
         {
             Player.Speed = this.speedBar.Value;
             Player.Turn = this.turnspeedBar.Value * 0.1;
+            Game.GapLength = this.holesBar.Value;
             backToMenu();
         }
 

@@ -69,6 +69,10 @@ namespace Zatacka_own
             this.holesBar.Name = "holesBar";
             this.holesBar.Size = new System.Drawing.Size(236, 45);
             this.holesBar.TabIndex = 2;
+            this.holesBar.Value = Game.GapLength;
+            this.holesBar.Minimum = 0;
+            this.holesBar.Maximum = 30;
+            this.holesBar.TickFrequency = 2;
             // 
             // speedLabel
             // 
@@ -95,7 +99,7 @@ namespace Zatacka_own
             this.holesLabel.Name = "holesLabel";
             this.holesLabel.Size = new System.Drawing.Size(64, 13);
             this.holesLabel.TabIndex = 5;
-            this.holesLabel.Text = "Holes in line";
+            this.holesLabel.Text = "Length of holes";
             // 
             // settingsLabel
             // 
