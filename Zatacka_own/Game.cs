@@ -30,7 +30,7 @@ namespace Zatacka_own
 
             //Initialise players
             players.Add( new Player(Color.Aquamarine, Keys.Left, Keys.Right, 100, 100, 0));
-            players.Add( new Player(Color.Red, Keys.A, Keys.D, 200, 200, 3.14));
+            players.Add( new Player(Color.Red, Keys.A, Keys.D, 200, 200, Math.PI));
 
             InitializeComponent();
 
@@ -141,6 +141,11 @@ namespace Zatacka_own
         private void keyUpEvent(object sender, KeyEventArgs e)
         {
             players.keyUpEvent(e);
+        }
+
+        private void Game_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

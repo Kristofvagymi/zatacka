@@ -68,7 +68,7 @@ namespace Zatacka_own
         {
             Graphics grap = e.Graphics;
 
-            grap.DrawCurve(new Pen(lineColor, 6), path.ToArray());
+            grap.DrawCurve(new Pen(lineColor, 5), path.ToArray());
 
             if (gapPath.Count > 1 && Game.GapLength > 1)
             {
@@ -84,9 +84,29 @@ namespace Zatacka_own
         }
 
         //Getting the color of the specific pixel pair
-        public Color GetPixelColor(int x, int y)
+        public bool crashed(int x, int y)
         {
-            return Game.b.GetPixel(x, y);
+            double rel_dir = Direction % (2 * Math.PI);
+
+            double degree_45 =  (1 * Math.PI) / 4;
+            double degree_135 = (3 * Math.PI) / 4;
+            double degree_225 = (5 * Math.PI) / 4;
+            double degree_315 = (7 * Math.PI) / 4;
+            bool crash = false;
+
+            if (( degree_45< rel_dir && rel_dir < degree_135) || (degree_225 < rel_dir && rel_dir < degree_315))
+            {//up or down
+                crash = (Game.b.GetPixel(x, y) != Color.FromArgb(255, 240, 240, 240) && Game.b.GetPixel(x, y) != Color.FromArgb(0, 0, 0, 0))
+                    || (Game.b.GetPixel(x + 2, y) != Color.FromArgb(255, 240, 240, 240) && Game.b.GetPixel(x + 2, y) != Color.FromArgb(0, 0, 0, 0))
+                    || (Game.b.GetPixel(x - 2, y) != Color.FromArgb(255, 240, 240, 240) && Game.b.GetPixel(x - 2, y) != Color.FromArgb(0, 0, 0, 0));
+            }
+            else
+            {//left or right
+                crash = (Game.b.GetPixel(x, y) != Color.FromArgb(255, 240, 240, 240) && Game.b.GetPixel(x, y) != Color.FromArgb(0, 0, 0, 0))
+                    || (Game.b.GetPixel(x, y + 2) != Color.FromArgb(255, 240, 240, 240) && Game.b.GetPixel(x, y + 2) != Color.FromArgb(0, 0, 0, 0))
+                    || (Game.b.GetPixel(x, y - 2) != Color.FromArgb(255, 240, 240, 240) && Game.b.GetPixel(x, y - 2) != Color.FromArgb(0, 0, 0, 0));
+            }
+            return crash;
         }
 
         //Adding the gap to the list when it reaches the GapLength
@@ -139,8 +159,7 @@ namespace Zatacka_own
                     result.Add(this);//Adding to the result list
                 }
                 //Checking background color
-                else if (this.GetPixelColor(newX, newY) != Color.FromArgb(255, 240, 240, 240)
-                    && this.GetPixelColor(newX, newY) != Color.FromArgb(0, 0, 0, 0))
+                else if (crashed(newX, newY))
                 {
                     //Death
                     Player_death = true;
