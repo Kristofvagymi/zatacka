@@ -14,8 +14,9 @@ namespace Zatacka_own
     {
         public WelcomePage()
         {
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None; //Remove title bar
+            //this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None; //Remove title bar
             InitializeComponent();
+            this.Text = "Zatacka";
         }
 
         private void exitButton_Click(object sender, EventArgs e)

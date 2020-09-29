@@ -14,8 +14,9 @@ namespace Zatacka_own
     {
         public Settings()
         {
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None; //Getting rid of title bar
+            //this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None; //Getting rid of title bar
             InitializeComponent();
+            this.Text = "Settings";
             Player.Speed = this.speedBar.Value; //Default
             Player.Turn = this.turnspeedBar.Value * 0.1; //Default
         }
