@@ -101,17 +101,29 @@ namespace Zatacka_own
             bool crash = false;
             try
             {
-                if ((degree_45 < rel_dir && rel_dir < degree_135) || (degree_225 < rel_dir && rel_dir < degree_315))
-                {//up or down
+                if ((degree_45 <= rel_dir && rel_dir < degree_135))
+                {//down
                     crash = (Game.b.GetPixel(x, y).ToArgb() != Game.backgroundARGB)
-                        || (Game.b.GetPixel(x + 2, y).ToArgb() != Game.backgroundARGB)
-                        || (Game.b.GetPixel(x - 2, y).ToArgb() != Game.backgroundARGB);
+                        || ((Game.b.GetPixel(x + 2, y).ToArgb() != Game.backgroundARGB) && !turningLeft)
+                        || ((Game.b.GetPixel(x - 2, y).ToArgb() != Game.backgroundARGB) && !turningRight);
+                }
+                else if (degree_225 < rel_dir && rel_dir <= degree_315)
+                {//up
+                    crash = (Game.b.GetPixel(x, y).ToArgb() != Game.backgroundARGB)
+                        || ((Game.b.GetPixel(x + 2, y).ToArgb() != Game.backgroundARGB) && !turningRight)
+                        || ((Game.b.GetPixel(x - 2, y).ToArgb() != Game.backgroundARGB) && !turningLeft);
+                }
+                else if (degree_135 < rel_dir && rel_dir <= degree_225)
+                {//left
+                    crash = (Game.b.GetPixel(x, y).ToArgb() != Game.backgroundARGB)
+                        || ((Game.b.GetPixel(x, y + 2).ToArgb() != Game.backgroundARGB) && !turningLeft)
+                        || ((Game.b.GetPixel(x, y - 2).ToArgb() != Game.backgroundARGB) && !turningRight);
                 }
                 else
-                {//left or right
+                {//right
                     crash = (Game.b.GetPixel(x, y).ToArgb() != Game.backgroundARGB)
-                        || (Game.b.GetPixel(x, y + 2).ToArgb() != Game.backgroundARGB)
-                        || (Game.b.GetPixel(x, y - 2).ToArgb() != Game.backgroundARGB);
+                        || ((Game.b.GetPixel(x, y + 2).ToArgb() != Game.backgroundARGB) && !turningRight)
+                        || ((Game.b.GetPixel(x, y - 2).ToArgb() != Game.backgroundARGB) && !turningLeft);
                 }
             }
             catch (Exception e) { }
