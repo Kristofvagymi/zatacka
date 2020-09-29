@@ -86,6 +86,12 @@ namespace Zatacka_own
         //Getting the color of the specific pixel pair
         public bool crashed(int x, int y)
         {
+            if (Game.b.GetPixel(x, y) == Color.FromArgb(0, 0, 0, 0))
+            {
+                return false;
+            }
+                
+
             double rel_dir = Direction % (2 * Math.PI);
 
             double degree_45 =  (1 * Math.PI) / 4;
@@ -97,15 +103,15 @@ namespace Zatacka_own
             {
                 if ((degree_45 < rel_dir && rel_dir < degree_135) || (degree_225 < rel_dir && rel_dir < degree_315))
                 {//up or down
-                    crash = (Game.b.GetPixel(x, y) != Color.FromArgb(255, 240, 240, 240) && Game.b.GetPixel(x, y) != Color.FromArgb(0, 0, 0, 0))
-                        || (Game.b.GetPixel(x + 2, y) != Color.FromArgb(255, 240, 240, 240) && Game.b.GetPixel(x + 2, y) != Color.FromArgb(0, 0, 0, 0))
-                        || (Game.b.GetPixel(x - 2, y) != Color.FromArgb(255, 240, 240, 240) && Game.b.GetPixel(x - 2, y) != Color.FromArgb(0, 0, 0, 0));
+                    crash = (Game.b.GetPixel(x, y).ToArgb() != Game.backgroundARGB)
+                        || (Game.b.GetPixel(x + 2, y).ToArgb() != Game.backgroundARGB)
+                        || (Game.b.GetPixel(x - 2, y).ToArgb() != Game.backgroundARGB);
                 }
                 else
                 {//left or right
-                    crash = (Game.b.GetPixel(x, y) != Color.FromArgb(255, 240, 240, 240) && Game.b.GetPixel(x, y) != Color.FromArgb(0, 0, 0, 0))
-                        || (Game.b.GetPixel(x, y + 2) != Color.FromArgb(255, 240, 240, 240) && Game.b.GetPixel(x, y + 2) != Color.FromArgb(0, 0, 0, 0))
-                        || (Game.b.GetPixel(x, y - 2) != Color.FromArgb(255, 240, 240, 240) && Game.b.GetPixel(x, y - 2) != Color.FromArgb(0, 0, 0, 0));
+                    crash = (Game.b.GetPixel(x, y).ToArgb() != Game.backgroundARGB)
+                        || (Game.b.GetPixel(x, y + 2).ToArgb() != Game.backgroundARGB)
+                        || (Game.b.GetPixel(x, y - 2).ToArgb() != Game.backgroundARGB);
                 }
             }
             catch (Exception e) { }
@@ -152,14 +158,9 @@ namespace Zatacka_own
 
                 int newY = Convert.ToInt32(PosY);
 
-                if (crashed(newX, newY))
-                {
-                    //Death
-                    Player_death = true;
-                    result.Add(this);//Adding to the result list
-                }
-                else if (newX >= Game.ActiveForm.Width || newX <= 1
-                    || newY >= Game.ActiveForm.Height || newY <= 1)//Checking valid X, Y coordinates
+                if (crashed(newX, newY) 
+                    || newX >= Game.ActiveForm.Width || newX <= 1
+                    || newY >= Game.ActiveForm.Height || newY <= 1)
                 {
                     //Death
                     Player_death = true;

@@ -16,12 +16,18 @@ namespace Zatacka_own
         public static int GapLength { set; get; } = 0; //Has to be even
 
         public static Bitmap b;
+        public static Color backgroundColor;
+        public static int backgroundARGB;
 
+        private bool tick_started = false;
 
         public Game()
         {
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.WindowState = FormWindowState.Maximized;
+            backgroundColor = Color.Black;
+            this.BackColor = backgroundColor;
+            backgroundARGB = backgroundColor.ToArgb();
 
             b = new Bitmap(this.Width, this.Height);
             DoubleBuffered = true;
@@ -80,7 +86,6 @@ namespace Zatacka_own
         private void paint(object sender, PaintEventArgs e)
         {
             players.paint(e);
-            //Dispose();
         }
 
         //Reset tick and gap counter
