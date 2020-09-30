@@ -86,12 +86,6 @@ namespace Zatacka_own
         //Getting the color of the specific pixel pair
         public bool crashed(int x, int y)
         {
-            if (Game.b.GetPixel(x, y) == Color.FromArgb(0, 0, 0, 0))
-            {
-                return false;
-            }
-                
-
             double rel_dir = Direction % (2 * Math.PI);
 
             double degree_45 =  (1 * Math.PI) / 4;
@@ -99,34 +93,32 @@ namespace Zatacka_own
             double degree_225 = (5 * Math.PI) / 4;
             double degree_315 = (7 * Math.PI) / 4;
             bool crash = false;
-            try
-            {
-                if ((degree_45 <= rel_dir && rel_dir < degree_135))
-                {//down
-                    crash = (Game.b.GetPixel(x, y).ToArgb() != Game.backgroundARGB)
-                        || ((Game.b.GetPixel(x + 2, y).ToArgb() != Game.backgroundARGB) && !turningLeft)
-                        || ((Game.b.GetPixel(x - 2, y).ToArgb() != Game.backgroundARGB) && !turningRight);
-                }
-                else if (degree_225 < rel_dir && rel_dir <= degree_315)
-                {//up
-                    crash = (Game.b.GetPixel(x, y).ToArgb() != Game.backgroundARGB)
-                        || ((Game.b.GetPixel(x + 2, y).ToArgb() != Game.backgroundARGB) && !turningRight)
-                        || ((Game.b.GetPixel(x - 2, y).ToArgb() != Game.backgroundARGB) && !turningLeft);
-                }
-                else if (degree_135 < rel_dir && rel_dir <= degree_225)
-                {//left
-                    crash = (Game.b.GetPixel(x, y).ToArgb() != Game.backgroundARGB)
-                        || ((Game.b.GetPixel(x, y + 2).ToArgb() != Game.backgroundARGB) && !turningLeft)
-                        || ((Game.b.GetPixel(x, y - 2).ToArgb() != Game.backgroundARGB) && !turningRight);
-                }
-                else
-                {//right
-                    crash = (Game.b.GetPixel(x, y).ToArgb() != Game.backgroundARGB)
-                        || ((Game.b.GetPixel(x, y + 2).ToArgb() != Game.backgroundARGB) && !turningRight)
-                        || ((Game.b.GetPixel(x, y - 2).ToArgb() != Game.backgroundARGB) && !turningLeft);
-                }
+
+            if ((degree_45 <= rel_dir && rel_dir < degree_135))
+            {//down
+                crash = (Game.b.GetPixel(x, y).ToArgb() != Game.backgroundARGB)
+                    || ((Game.b.GetPixel(x + 2, y).ToArgb() != Game.backgroundARGB) && !turningLeft)
+                    || ((Game.b.GetPixel(x - 2, y).ToArgb() != Game.backgroundARGB) && !turningRight);
             }
-            catch (Exception e) { }
+            else if (degree_225 < rel_dir && rel_dir <= degree_315)
+            {//up
+                crash = (Game.b.GetPixel(x, y).ToArgb() != Game.backgroundARGB)
+                    || ((Game.b.GetPixel(x + 2, y).ToArgb() != Game.backgroundARGB) && !turningRight)
+                    || ((Game.b.GetPixel(x - 2, y).ToArgb() != Game.backgroundARGB) && !turningLeft);
+            }
+            else if (degree_135 < rel_dir && rel_dir <= degree_225)
+            {//left
+                crash = (Game.b.GetPixel(x, y).ToArgb() != Game.backgroundARGB)
+                    || ((Game.b.GetPixel(x, y + 2).ToArgb() != Game.backgroundARGB) && !turningLeft)
+                    || ((Game.b.GetPixel(x, y - 2).ToArgb() != Game.backgroundARGB) && !turningRight);
+            }
+            else
+            {//right
+                crash = (Game.b.GetPixel(x, y).ToArgb() != Game.backgroundARGB)
+                    || ((Game.b.GetPixel(x, y + 2).ToArgb() != Game.backgroundARGB) && !turningRight)
+                    || ((Game.b.GetPixel(x, y - 2).ToArgb() != Game.backgroundARGB) && !turningLeft);
+            }
+            
             return crash;
         }
 
@@ -170,9 +162,9 @@ namespace Zatacka_own
 
                 int newY = Convert.ToInt32(PosY);
 
-                if (crashed(newX, newY) 
-                    || newX >= Game.ActiveForm.Width || newX <= 1
-                    || newY >= Game.ActiveForm.Height || newY <= 1)
+                if (newX >= Game.ActiveForm.Width || newX < 1
+                    || newY >= Game.ActiveForm.Height || newY < 1 
+                    || crashed(newX, newY))
                 {
                     //Death
                     Player_death = true;

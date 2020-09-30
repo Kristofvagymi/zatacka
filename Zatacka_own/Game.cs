@@ -23,25 +23,25 @@ namespace Zatacka_own
 
         public Game()
         {
+            InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
             backgroundColor = Color.Black;
             this.BackColor = backgroundColor;
             backgroundARGB = backgroundColor.ToArgb();
 
-            b = new Bitmap(this.Width, this.Height);
             DoubleBuffered = true;
 
+            b = new Bitmap(this.Width, this.Height);
+            
             players = new PlayerList();
 
             //Initialise players
             players.Add( new Player(Color.Aquamarine, Keys.Left, Keys.Right, 100, 100, 0));
-            players.Add( new Player(Color.Red, Keys.A, Keys.D, 200, 200, Math.PI));
-
-            InitializeComponent();
+            players.Add(new Player(Color.Red, Keys.A, Keys.D, 400, 400, Math.PI));
 
             popup = new AllDeadPopup();
-
+            
             timer1.Start();
         }
 
@@ -120,22 +120,22 @@ namespace Zatacka_own
 
         private void timer_tick(object sender, EventArgs e)
         {
-            //Tick
-            players.tick();
-
             //Advance counters
             advanceCounters();
-
+            
             //Redraw the bitmap
             b.Dispose();
             b = new Bitmap(this.Width, this.Height);
             DrawToBitmap(b,new Rectangle(0,0,this.Width,this.Height));
 
-            //Alldead
-            OnePlayerLeft();
-
             //Refresh
             Invalidate();
+
+            //Tick
+            players.tick();
+
+            //Alldead
+            OnePlayerLeft();
         }
 
         private void keyDownEvent(object sender, KeyEventArgs e)
@@ -149,6 +149,11 @@ namespace Zatacka_own
         }
 
         private void Game_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Game_Load_1(object sender, EventArgs e)
         {
 
         }
